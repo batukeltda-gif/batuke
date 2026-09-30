@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="pt-BR"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<link rel="icon" href="logo.svg" type="image/svg+xml">
+<title>Bot de música</title><style>
+:root{--bg:#0b1117;--bg2:#111a22;--card:#141f28;--line:#223240;--text:#e7eaf0;--muted:#9aa6b2;--accent:#2be0c6;--accent-ink:#06201c;--link:#5cf2dc;color-scheme:dark}
+@media (prefers-color-scheme: light){:root:not([data-theme="dark"]){--bg:#f5f8f9;--bg2:#eaf1f2;--card:#ffffff;--line:#d9e3e6;--text:#10202a;--muted:#55656f;--accent:#0f9f8c;--accent-ink:#ffffff;--link:#0b7f70;color-scheme:light}}
+*{box-sizing:border-box}html{-webkit-text-size-adjust:100%}
+body{margin:0;background:radial-gradient(1200px 500px at 50% -200px,color-mix(in srgb,var(--accent) 16%,transparent),transparent),var(--bg);color:var(--text);font:16px/1.65 system-ui,-apple-system,"Segoe UI",Roboto,"Noto Sans",sans-serif}
+a{color:var(--link);text-underline-offset:3px}
+.wrap{max-width:860px;margin:0 auto;padding:0 20px}
+header{position:sticky;top:0;z-index:5;backdrop-filter:blur(10px);background:color-mix(in srgb,var(--bg) 80%,transparent);border-bottom:1px solid var(--line)}
+.bar{display:flex;align-items:center;gap:14px;height:62px}
+.brand{display:flex;align-items:center;gap:10px;font-weight:700;font-size:18px;color:var(--text);text-decoration:none}
+.logo{width:30px;height:30px;border-radius:9px;display:block}
+nav{display:flex;gap:4px;margin-left:auto;flex-wrap:wrap}
+nav a{color:var(--muted);text-decoration:none;padding:6px 10px;border-radius:8px;font-size:14px}
+nav a[aria-current="page"],nav a:hover{color:var(--text);background:var(--bg2)}
+.langs{display:flex;border:1px solid var(--line);border-radius:9px;overflow:hidden}
+.langs button{all:unset;cursor:pointer;padding:5px 9px;font-size:12px;font-weight:700;color:var(--muted)}
+.langs button[aria-pressed="true"]{background:var(--accent);color:var(--accent-ink)}
+.hero{padding:56px 0 18px}
+.eyebrow{font-size:12px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:var(--accent)}
+h1{font-size:clamp(30px,5vw,44px);line-height:1.1;margin:.3em 0 .35em;letter-spacing:-.02em}
+.lead{font-size:18px;color:var(--muted);max-width:66ch}
+.meta{font-size:13px;color:var(--muted);margin-top:14px}
+.layout{display:grid;grid-template-columns:220px 1fr;gap:28px;padding:18px 0 60px}
+.toc{position:sticky;top:84px;align-self:start;font-size:14px}
+.toc b{display:block;color:var(--muted);font-size:12px;letter-spacing:.08em;text-transform:uppercase;margin-bottom:8px}
+.toc ol{margin:0;padding-left:18px;color:var(--muted)}.toc li{margin:4px 0}.toc a{color:var(--muted);text-decoration:none}.toc a:hover{color:var(--text)}
+article{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:8px 26px 18px}
+section.item{padding:18px 0;border-bottom:1px solid var(--line)}section.item:last-child{border-bottom:0}
+h2{font-size:20px;margin:0 0 6px;display:flex;gap:10px;align-items:baseline}
+h2 .n{font:700 12px/1 ui-monospace,Menlo,Consolas,monospace;color:var(--accent-ink);background:var(--accent);padding:4px 6px;border-radius:6px}
+ul{padding-left:20px}li{margin:6px 0}
+code{font:14px ui-monospace,Menlo,Consolas,monospace;background:var(--bg2);border:1px solid var(--line);padding:1px 6px;border-radius:6px}
+footer{border-top:1px solid var(--line);color:var(--muted);font-size:14px;padding:26px 0 40px}
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px;padding:10px 0 40px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:18px}
+.card h3{margin:0 0 4px;font-size:16px}.card p{margin:0;color:var(--muted);font-size:14px}
+.cta{display:flex;gap:10px;flex-wrap:wrap;margin-top:22px}
+.btn{display:inline-flex;align-items:center;gap:8px;padding:11px 18px;border-radius:11px;font-weight:700;text-decoration:none;border:1px solid var(--line);color:var(--text);background:var(--bg2)}
+.btn.primary{background:var(--accent);color:var(--accent-ink);border-color:transparent}
+[data-lang]{display:none}[data-lang].on{display:block}
+@media (max-width:760px){.layout{grid-template-columns:1fr}.toc{position:static}article{padding:4px 18px 12px}.bar{height:auto;padding:10px 0;flex-wrap:wrap}nav{margin-left:0;order:3;width:100%}}
+</style><script src="config.js"></script></head>
+<body><header><div class="wrap bar">
+<a class="brand" href="index.html"><img class="logo" src="logo.svg" alt="" width="30" height="30"><span data-fill="name">Bot</span></a>
+<nav><a href="index.html" aria-current="page"><span data-lang="pt">Início</span><span data-lang="en">Home</span><span data-lang="es">Inicio</span></a><a href="termos.html"><span data-lang="pt">Termos</span><span data-lang="en">Terms</span><span data-lang="es">Términos</span></a><a href="privacidade.html"><span data-lang="pt">Privacidade</span><span data-lang="en">Privacy</span><span data-lang="es">Privacidad</span></a></nav>
+<div class="langs" role="group" aria-label="Idioma"><button data-set="pt">PT</button><button data-set="en">EN</button><button data-set="es">ES</button></div>
+</div></header><main class="wrap"><div data-lang="pt"><div class="hero"><div class="eyebrow" data-fill="name">Bot</div><h1>Música no Discord, sem complicação</h1><p class="lead">Tocar pelo nome ou link, rádios 24/7 por gênero, letra ao vivo, playlists salvas e o seu perfil musical.</p>
+<div class="cta"><a class="btn primary" data-fill-href="invite" href="#">Adicionar ao Discord</a><a class="btn" data-fill-href="support" href="#">Servidor de suporte</a></div></div>
+<div class="cards"><div class="card"><h3>Rádios 24/7</h3><p>Funk, sertanejo, lo-fi e mais. Um clique e a música não para.</p></div><div class="card"><h3>Letra ao vivo</h3><p>A letra acompanha a música, linha por linha.</p></div><div class="card"><h3>Seu perfil</h3><p>Tempo ouvido, artistas favoritos e sequência de dias.</p></div><div class="card"><h3>Sem travar</h3><p>Se a transmissão cair, a música volta de onde parou.</p></div></div></div><div data-lang="en"><div class="hero"><div class="eyebrow" data-fill="name">Bot</div><h1>Music on Discord, made simple</h1><p class="lead">Play by name or link, 24/7 genre radios, live lyrics, saved playlists and your music profile.</p>
+<div class="cta"><a class="btn primary" data-fill-href="invite" href="#">Add to Discord</a><a class="btn" data-fill-href="support" href="#">Support server</a></div></div>
+<div class="cards"><div class="card"><h3>24/7 radios</h3><p>Funk, sertanejo, lo-fi and more. One click and the music never stops.</p></div><div class="card"><h3>Live lyrics</h3><p>Lyrics follow the song, line by line.</p></div><div class="card"><h3>Your profile</h3><p>Time listened, favorite artists and daily streaks.</p></div><div class="card"><h3>No hiccups</h3><p>If the stream drops, the song resumes where it stopped.</p></div></div></div><div data-lang="es"><div class="hero"><div class="eyebrow" data-fill="name">Bot</div><h1>Música en Discord, sin complicaciones</h1><p class="lead">Reproduce por nombre o enlace, radios 24/7 por género, letra en vivo, playlists guardadas y tu perfil musical.</p>
+<div class="cta"><a class="btn primary" data-fill-href="invite" href="#">Agregar a Discord</a><a class="btn" data-fill-href="support" href="#">Servidor de soporte</a></div></div>
+<div class="cards"><div class="card"><h3>Radios 24/7</h3><p>Funk, sertanejo, lo-fi y más. Un clic y la música no para.</p></div><div class="card"><h3>Letra en vivo</h3><p>La letra acompaña la canción, línea por línea.</p></div><div class="card"><h3>Tu perfil</h3><p>Tiempo escuchado, artistas favoritos y rachas de días.</p></div><div class="card"><h3>Sin cortes</h3><p>Si la transmisión se cae, la canción vuelve donde se quedó.</p></div></div></div></main><footer><div class="wrap"><div data-lang="pt">Dúvidas? Fale com a gente em <a data-fill-href="email" data-fill="email"></a> · Feito com carinho para a comunidade.</div><div data-lang="en">Questions? Reach us at <a data-fill-href="email" data-fill="email"></a> · Made with care for the community.</div><div data-lang="es">¿Dudas? Escríbenos a <a data-fill-href="email" data-fill="email"></a> · Hecho con cariño para la comunidad.</div></div></footer><script>
+(function(){
+  var C = window.BOT || {};
+  function fill(){
+    document.querySelectorAll('[data-fill]').forEach(function(el){ var v = C[el.getAttribute('data-fill')]; if (v) el.textContent = v; });
+    document.querySelectorAll('[data-fill-href]').forEach(function(el){ var k = el.getAttribute('data-fill-href'); var v = C[k]; if (!v) return; el.href = k === 'email' ? 'mailto:' + v : v; });
+  }
+  var supported = ['pt','en','es'];
+  function pick(){
+    var q = new URLSearchParams(location.search).get('lang');
+    if (supported.indexOf(q) >= 0) return q;
+    try { var s = localStorage.getItem('lang'); if (supported.indexOf(s) >= 0) return s; } catch (e) {}
+    var n = (navigator.language || 'pt').slice(0,2).toLowerCase();
+    return supported.indexOf(n) >= 0 ? n : 'pt';
+  }
+  function set(lang){
+    document.documentElement.lang = lang === 'pt' ? 'pt-BR' : lang;
+    document.querySelectorAll('[data-lang]').forEach(function(el){ el.classList.toggle('on', el.getAttribute('data-lang') === lang); });
+    document.querySelectorAll('.langs button').forEach(function(b){ b.setAttribute('aria-pressed', String(b.dataset.set === lang)); });
+    var t = document.querySelector('[data-lang="' + lang + '"] h1');
+    document.title = (t ? t.textContent + ' · ' : '') + (C.name || 'Bot');
+    try { localStorage.setItem('lang', lang); } catch (e) {}
+  }
+  document.querySelectorAll('.langs button').forEach(function(b){ b.addEventListener('click', function(){ set(b.dataset.set); }); });
+  fill(); set(pick());
+})();
+</script></body></html>
